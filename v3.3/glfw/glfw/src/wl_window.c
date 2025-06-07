@@ -51,7 +51,8 @@ static int createTmpfileCloexec(char* tmpname)
 {
     int fd;
 
-    fd = mkostemp(tmpname, O_CLOEXEC);
+    //fd = mkostemp(tmpname, O_CLOEXEC);
+    fd = mkstemp(tmpname);
     if (fd >= 0)
         unlink(tmpname);
 
@@ -199,7 +200,8 @@ static GLFWbool waitForData(struct pollfd* fds, nfds_t count, double* timeout)
             const time_t seconds = (time_t) *timeout;
             const long nanoseconds = (long) ((*timeout - seconds) * 1e9);
             const struct timespec ts = { seconds, nanoseconds };
-            const int result = ppoll(fds, count, &ts, NULL);
+            //const int result = ppoll(fds, count, &ts, NULL);
+            const int result = poll(fds, count, (int) (*timeout * 1e3));
 #elif defined(__NetBSD__)
             const time_t seconds = (time_t) *timeout;
             const long nanoseconds = (long) ((*timeout - seconds) * 1e9);
@@ -1228,7 +1230,8 @@ static char* readDataOfferAsString(struct wl_data_offer* offer, const char* mime
 {
     int fds[2];
 
-    if (pipe2(fds, O_CLOEXEC) == -1)
+    //if (pipe2(fds, O_CLOEXEC) == -1)
+    if (pipe(fds) == -1)
     {
         _glfwInputError(GLFW_PLATFORM_ERROR,
                         "Wayland: Failed to create pipe for data offer: %s",
