@@ -4,6 +4,10 @@
 
 # GLFW 3.3 for Go 
 
+> This is a patched version. Go to <https://github.com/go-gl/glfw> for the original project.
+>
+> Patch provided by [@metal3d](https://github.com/metal3d).
+
 ## Installation
 
 * GLFW C library source is included and built automatically as part of the Go package. But you need to make sure you have dependencies of GLFW:
