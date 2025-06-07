@@ -5,7 +5,7 @@ import (
 	"image/color"
 	"runtime"
 
-	"github.com/go-gl/glfw/v3.3/glfw"
+	"github.com/5GameMaker/go-gl-glfw-patched/v3.3/glfw"
 )
 
 func init() {

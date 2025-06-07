@@ -1,3 +1,3 @@
-module github.com/go-gl/glfw
+module github.com/5GameMaker/go-gl-glfw-patched
 
 go 1.19
